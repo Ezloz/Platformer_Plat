@@ -9,6 +9,10 @@ public class PlayerActions : MonoBehaviour
     private InputAction jump;
     private InputAction dash;
 
+    [SerializeField] float dash_velocity;
+    [SerializeField] float dash_time;
+    [SerializeField] float bounce_velocity_conversion_coef;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
