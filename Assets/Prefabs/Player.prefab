@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9182602117860671604}
   - component: {fileID: 3670667915485399776}
   - component: {fileID: 6969594387680740136}
-  - component: {fileID: 9090779285748519927}
   - component: {fileID: 5572023859431246252}
   m_Layer: 0
   m_Name: Player
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 554595367734269726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.22, y: 0.11, z: 0}
+  m_LocalPosition: {x: -0.43119, y: -0.12313, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,18 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09938d54c2046cf458b4eba5fc928390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
---- !u!114 &9090779285748519927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554595367734269726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 583beb582717368489d42b1fc29d0b41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerActions
+  <hp>k__BackingField: 5
+  <friction>k__BackingField: 1
+  <gravity>k__BackingField: 0
+  <acceleration>k__BackingField: 10
+  <max_velocity>k__BackingField: 30
 --- !u!114 &5572023859431246252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,3 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7992a54ad90ba4db9dcb556d4c9429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMouvement
+  dash_velocity: 0
+  dash_time: 0
+  bounce_velocity_conversion_coef: 0
