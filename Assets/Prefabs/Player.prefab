@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 554595367734269726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.22, y: 0.11, z: 0}
+  m_LocalPosition: {x: -0.43119, y: -0.12313, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,10 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09938d54c2046cf458b4eba5fc928390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
-  hp: 0
-  friction: 0
-  gravity: 0
-  max_velocity: 0
+  <hp>k__BackingField: 5
+  <friction>k__BackingField: 1
+  <gravity>k__BackingField: 0
+  <acceleration>k__BackingField: 10
+  <max_velocity>k__BackingField: 30
 --- !u!114 &5572023859431246252
 MonoBehaviour:
   m_ObjectHideFlags: 0

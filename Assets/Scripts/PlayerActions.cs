@@ -9,13 +9,17 @@ public class PlayerActions : MonoBehaviour
     private InputAction jump;
     private InputAction dash;
 
+    private Properties properties => this.GetComponent<Properties>();
+
+    private Rigidbody2D rigid_body => this.gameObject.GetComponent<Rigidbody2D>();
+
     [SerializeField] float dash_velocity;
     [SerializeField] float dash_time;
     [SerializeField] float bounce_velocity_conversion_coef;
 
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         move = InputSystem.actions.FindAction("Move");
@@ -26,9 +30,25 @@ public class PlayerActions : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void Move(float direction)
     {
+
+        if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
+        {
+            rigid_body.AddForceX(this.properties.acceleration);
+        }
+        else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
+        {
+            rigid_body.AddForceX(-this.properties.acceleration);
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        float horizontal_direction = move.ReadValue<Vector2>().x;
+        Move(horizontal_direction);
+        print(horizontal_direction);
         
     }
 }
