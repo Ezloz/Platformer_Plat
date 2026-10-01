@@ -109,7 +109,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 10
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3670667915485399776
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,9 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09938d54c2046cf458b4eba5fc928390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
-  <hp>k__BackingField: 5
-  <friction>k__BackingField: 1
-  <gravity>k__BackingField: 0
   <acceleration>k__BackingField: 10
   <max_velocity>k__BackingField: 30
 --- !u!114 &5572023859431246252
