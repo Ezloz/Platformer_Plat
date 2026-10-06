@@ -35,13 +35,26 @@ public class PlayerActions : MonoBehaviour
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
-            rigid_body.AddForceX(this.properties.acceleration);
+            rigid_body.AddForceX(this.properties.acceleration, ForceMode2D.Impulse);
+            //if (rigid_body.linearVelocityX < 0)
+            //{
+            //    rigid_body.AddForceX(this.properties.acceleration);
+            //}
+
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
-            rigid_body.AddForceX(-this.properties.acceleration);
+            rigid_body.AddForceX(-this.properties.acceleration, ForceMode2D.Impulse);
+            //if (rigid_body.linearVelocityX > 0)
+            //{
+            //    rigid_body.AddForceX(-this.properties.acceleration);
+            //}
+        }
+        else {
+        
         }
         rigid_body.linearVelocityX = Mathf.Clamp(rigid_body.linearVelocityX,-properties.max_velocity,properties.max_velocity);
+        Debug.Log(rigid_body.linearVelocityX);
     }
 
     void FixedUpdate()

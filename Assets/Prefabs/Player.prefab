@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09938d54c2046cf458b4eba5fc928390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
-  <acceleration>k__BackingField: 20
+  <acceleration>k__BackingField: 30
   <max_velocity>k__BackingField: 30
 --- !u!114 &5572023859431246252
 MonoBehaviour:
