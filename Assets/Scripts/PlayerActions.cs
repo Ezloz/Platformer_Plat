@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerActions : MonoBehaviour
 {
     private InputAction move;
@@ -13,11 +15,7 @@ public class PlayerActions : MonoBehaviour
 
     private Rigidbody2D rigid_body => this.gameObject.GetComponent<Rigidbody2D>();
 
-    [SerializeField] float dash_velocity;
-    [SerializeField] float dash_time;
-    [SerializeField] float bounce_velocity_conversion_coef;
-
-
+    private bool isGrounded = true;
 
 
     void Start()
@@ -44,10 +42,32 @@ public class PlayerActions : MonoBehaviour
 
     }
 
+
+    void Jump(bool jump_button_pressed)
+    {
+        if(jump_button_pressed && isGrounded)
+        {
+            rigid_body.AddForceY(this.properties.jump_strength, ForceMode2D.Impulse);
+            isGrounded = false;
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        isGrounded = true;
+        
+    }
+
+    void OnCollisionStay()
+    {
+        isGrounded = true;
+    }
+
     void FixedUpdate()
     {
         float horizontal_direction = move.ReadValue<Vector2>().x;
         Move(horizontal_direction);
+        Jump(jump.IsPressed());
         print(horizontal_direction);
         
     }
