@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6969594387680740136, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+      propertyPath: <jump_strength>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7804032325822439881, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.43119
@@ -408,7 +412,7 @@ GameObject:
   - component: {fileID: 1801338850}
   - component: {fileID: 1801338849}
   - component: {fileID: 1801338848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

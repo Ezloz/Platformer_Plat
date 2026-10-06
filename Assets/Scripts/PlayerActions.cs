@@ -55,32 +55,30 @@ public class PlayerActions : MonoBehaviour
         Debug.Log(rigid_body.linearVelocityX);
     }
 
-
-    void Jump(bool jump_button_pressed)
+    private bool GetIsGrounded()
     {
-        if(jump_button_pressed && isGrounded)
+//        Debug.DrawRay(this.transform.position, Vector2.down*this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, Color.red);
+        return Physics2D.Raycast(this.transform.position, Vector2.down, this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground"));
+
+    }
+
+    void Jump()
+    {
+
+        if(jump.WasPressedThisFrame() && GetIsGrounded())
         {
             rigid_body.AddForceY(this.properties.jump_strength, ForceMode2D.Impulse);
             isGrounded = false;
         }
-
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        isGrounded = true;
-        
-    }
 
-    void OnCollisionStay()
-    {
-        isGrounded = true;
-    }
 
-    void FixedUpdate()
+    void Update()
     {
         float horizontal_direction = move.ReadValue<Vector2>().x;
         Move(horizontal_direction);
-        Jump(jump.IsPressed());
+        Jump();
         print(horizontal_direction);
         
     }
