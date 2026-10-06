@@ -9,8 +9,9 @@ public class Properties : MonoBehaviour
     [field: SerializeField] public float max_velocity {get; private set;} = 10.0f;
 
     [field: SerializeField] public float deccelarition { get; private set; } = 1.0f;
-    [field: SerializeField] public float jump_strength {get; private set;} = 20.0f;
-    [field: SerializeField] public float jump_length {get; private set;} = 1.0f;
+    [field: SerializeField] public float jump_strength_min {get; private set;} = 20.0f;
+    [field: SerializeField] public float jump_strength_max {get; private set;} = 2.0f;
+    [field: SerializeField] public float jump_max_time {get; private set;} = 1.0f;
     [field: SerializeField] public float dash_velocity {get; private set;} = 1.0f;
     [field: SerializeField] public float dash_time {get; private set;} = 1.0f;
 
