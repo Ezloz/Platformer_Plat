@@ -15,7 +15,12 @@ public class PlayerActions : MonoBehaviour
 
     private Rigidbody2D rigid_body => this.gameObject.GetComponent<Rigidbody2D>();
 
+    private enum Direction {Left, Right}
+    private Direction currentDirection = Direction.Left;
+
     private bool isGrounded = true;
+    private bool isDashing = false;
+    private float dashTimer = 0f;
 
 
     void Start()
@@ -28,31 +33,51 @@ public class PlayerActions : MonoBehaviour
         
     }
 
-    void Move(float direction)
+    void Move()
     {
+        float direction = move.ReadValue<Vector2>().x;
+
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
             rigid_body.AddForceX(this.properties.acceleration, ForceMode2D.Impulse);
-            //if (rigid_body.linearVelocityX < 0)
-            //{
-            //    rigid_body.AddForceX(this.properties.acceleration);
-            //}
-
+            currentDirection = Direction.Right;
+          
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
             rigid_body.AddForceX(-this.properties.acceleration, ForceMode2D.Impulse);
-            //if (rigid_body.linearVelocityX > 0)
-            //{
-            //    rigid_body.AddForceX(-this.properties.acceleration);
-            //}
+            currentDirection = Direction.Left;
         }
         else {
-        
+            rigid_body.linearVelocityX = Mathf.Lerp(rigid_body.linearVelocityX, 0, Time.deltaTime * properties.deccelarition);
         }
         rigid_body.linearVelocityX = Mathf.Clamp(rigid_body.linearVelocityX,-properties.max_velocity,properties.max_velocity);
-        Debug.Log(rigid_body.linearVelocityX);
+    }
+
+    void Dash() { 
+
+        if (dash.WasPressedThisFrame() && !isDashing)
+        {
+            Debug.Log("dash vroom");
+            isDashing = true;
+            dashTimer = 0f;
+        }
+
+    }
+
+    void Dashing()
+    {
+        dashTimer += Time.deltaTime;
+        if (dashTimer > properties.dash_time)
+        {
+            isDashing = false;
+            return;
+        }
+        float dir = currentDirection == Direction.Left ? -1f : 1f;
+        rigid_body.linearVelocityX = dir * properties.dash_velocity;
+        rigid_body.linearVelocityY = 0f;
+        
     }
 
     private bool GetIsGrounded()
@@ -73,13 +98,27 @@ public class PlayerActions : MonoBehaviour
     }
 
 
+    void OnCollisionStay()
+    {
+        isGrounded = true;
+
+    }
+
 
     void Update()
     {
-        float horizontal_direction = move.ReadValue<Vector2>().x;
-        Move(horizontal_direction);
-        Jump();
-        print(horizontal_direction);
-        
+        if (!isDashing)
+        {
+            Move();
+            Jump();
+            Dash();
+
+        }
+        else
+        {
+            Dashing();
+        }
+        //print(horizontal_direction);
     }
 }
+
