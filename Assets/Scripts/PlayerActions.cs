@@ -15,6 +15,8 @@ public class PlayerActions : MonoBehaviour
     private Rigidbody2D rigid_body => GetComponent<Rigidbody2D>();
 
     [SerializeField] private GameObject attack_sprite;
+    private PlayerFX fx => GetComponent<PlayerFX>();
+
 
     private enum Direction {Left, Right}
     private Direction currentDirection = Direction.Left;
@@ -70,6 +72,7 @@ public class PlayerActions : MonoBehaviour
         {
             isDashing = true;
             dashTimer = 0f;
+            fx.EmitTrail(0.5f, properties.dash_time);
         }
 
     }
@@ -155,6 +158,7 @@ public class PlayerActions : MonoBehaviour
         if (isDashing)
         {
             isDashing = false;
+            fx.StopEmiting();
         }
     }
 
