@@ -20,7 +20,10 @@ public class PlayerActions : MonoBehaviour
 
     private bool isGrounded = true;
     private bool isDashing = false;
+    private bool isJumping = false;
+
     private float dashTimer = 0f;
+    private float jumpTimer = 0f;
 
 
     void Start()
@@ -36,6 +39,7 @@ public class PlayerActions : MonoBehaviour
     void Move()
     {
         float direction = move.ReadValue<Vector2>().x;
+        //print(horizontal_direction);
 
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
@@ -92,17 +96,22 @@ public class PlayerActions : MonoBehaviour
 
         if(jump.WasPressedThisFrame() && GetIsGrounded())
         {
-            rigid_body.AddForceY(this.properties.jump_strength, ForceMode2D.Impulse);
+            rigid_body.AddForceY(this.properties.jump_strength_min, ForceMode2D.Impulse);
             isGrounded = false;
+            isJumping = true;
+            jumpTimer = properties.jump_max_time;
+        }
+        else if (jump.IsPressed() && isJumping && jumpTimer > 0f)
+        {
+            rigid_body.AddForceY(this.properties.jump_strength_max, ForceMode2D.Force);
+            jumpTimer -= Time.deltaTime;            
+        }
+        else
+        {
+            isJumping = false;
         }
     }
 
-
-    void OnCollisionStay()
-    {
-        isGrounded = true;
-
-    }
 
 
     void Update()
@@ -118,7 +127,6 @@ public class PlayerActions : MonoBehaviour
         {
             Dashing();
         }
-        //print(horizontal_direction);
     }
 }
 
