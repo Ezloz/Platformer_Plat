@@ -11,9 +11,9 @@ public class PlayerActions : MonoBehaviour
     private InputAction jump;
     private InputAction dash;
 
-    private Properties properties => this.GetComponent<Properties>();
+    private Properties properties => GetComponent<Properties>();
 
-    private Rigidbody2D rigid_body => this.gameObject.GetComponent<Rigidbody2D>();
+    private Rigidbody2D rigid_body => GetComponent<Rigidbody2D>();
 
     private enum Direction {Left, Right}
     private Direction currentDirection = Direction.Left;
@@ -40,13 +40,13 @@ public class PlayerActions : MonoBehaviour
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
-            rigid_body.AddForceX(this.properties.acceleration, ForceMode2D.Impulse);
+            rigid_body.AddForceX(properties.acceleration, ForceMode2D.Impulse);
             currentDirection = Direction.Right;
           
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
-            rigid_body.AddForceX(-this.properties.acceleration, ForceMode2D.Impulse);
+            rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Impulse);
             currentDirection = Direction.Left;
         }
         else {
@@ -59,7 +59,6 @@ public class PlayerActions : MonoBehaviour
 
         if (dash.WasPressedThisFrame() && !isDashing)
         {
-            Debug.Log("dash vroom");
             isDashing = true;
             dashTimer = 0f;
         }
@@ -83,7 +82,7 @@ public class PlayerActions : MonoBehaviour
     private bool GetIsGrounded()
     {
 //        Debug.DrawRay(this.transform.position, Vector2.down*this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, Color.red);
-        return Physics2D.Raycast(this.transform.position, Vector2.down, this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground"));
+        return Physics2D.Raycast(transform.position, Vector2.down, GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground"));
 
     }
 
@@ -97,7 +96,13 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isDashing)
+        {
+            isDashing = false;
+        }
+    }
     void OnCollisionStay()
     {
         isGrounded = true;

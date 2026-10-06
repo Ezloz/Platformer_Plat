@@ -111,7 +111,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 10
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -175,10 +175,10 @@ MonoBehaviour:
   <acceleration>k__BackingField: 30
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 15
-  <jump_strength>k__BackingField: 20
+  <jump_strength>k__BackingField: 25
   <jump_length>k__BackingField: 5
-  <dash_velocity>k__BackingField: 40
-  <dash_time>k__BackingField: 0.5
+  <dash_velocity>k__BackingField: 50
+  <dash_time>k__BackingField: 0.3
   <bounce_velocity_conversion_coef>k__BackingField: 0.2
 --- !u!114 &5572023859431246252
 MonoBehaviour:
@@ -220,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 4183969454190361878}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
