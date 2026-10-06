@@ -40,7 +40,6 @@ public class PlayerActions : MonoBehaviour
         attack = InputSystem.actions.FindAction("Attack");
         jump = InputSystem.actions.FindAction("Jump");
         dash = InputSystem.actions.FindAction("Dash");
-        this.attack_sprite.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void Move()
@@ -114,14 +113,14 @@ public class PlayerActions : MonoBehaviour
         if (attackTimer > properties.attack_time)
         {
             isAttacking = false;
-            this.attack_sprite.GetComponent<SpriteRenderer>().enabled = false;
+//            this.attack_sprite.GetComponent<SpriteRenderer>().enabled = false;
             return;
         }
 
         Vector2 direction = GetAttackDirection();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // merci Chatgpt
         this.attack_sprite.transform.rotation = Quaternion.Euler(0, 0, angle);
-        this.attack_sprite.GetComponent<SpriteRenderer>().enabled = true;
+//        this.attack_sprite.GetComponent<SpriteRenderer>().enabled = true;
         
     }
 
@@ -137,14 +136,14 @@ public class PlayerActions : MonoBehaviour
 
         if(jump.WasPressedThisFrame() && GetIsGrounded())
         {
-            rigid_body.AddForceY(this.properties.jump_strength_min, ForceMode2D.Impulse);
+            rigid_body.AddForceY(this.properties.jump_strength_start, ForceMode2D.Impulse);
             isGrounded = false;
             isJumping = true;
-            jumpTimer = properties.jump_max_time;
+            jumpTimer = properties.jump_time_length;
         }
         else if (jump.IsPressed() && isJumping && jumpTimer > 0f)
         {
-            rigid_body.AddForceY(properties.jump_strength_max/properties.jump_max_time, ForceMode2D.Force);
+            rigid_body.AddForceY(properties.jump_strength_max/properties.jump_time_length, ForceMode2D.Force);
             jumpTimer -= Time.deltaTime;
         }
         else
