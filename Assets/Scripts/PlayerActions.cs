@@ -15,7 +15,12 @@ public class PlayerActions : MonoBehaviour
 
     private Rigidbody2D rigid_body => this.gameObject.GetComponent<Rigidbody2D>();
 
+    private enum Direction {Left, Right}
+    private Direction currentDirection = Direction.Left;
+
     private bool isGrounded = true;
+    private bool isDashing = false;
+    private float dashTimer = 0f;
 
 
     void Start()
@@ -34,17 +39,43 @@ public class PlayerActions : MonoBehaviour
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
             rigid_body.AddForceX(this.properties.acceleration, ForceMode2D.Impulse);
+            currentDirection = Direction.Right;
           
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
             rigid_body.AddForceX(-this.properties.acceleration, ForceMode2D.Impulse);
-            
+            currentDirection = Direction.Left;
         }
         else {
             rigid_body.linearVelocityX = Mathf.Lerp(rigid_body.linearVelocityX, 0, Time.deltaTime * properties.deccelarition);
         }
         rigid_body.linearVelocityX = Mathf.Clamp(rigid_body.linearVelocityX,-properties.max_velocity,properties.max_velocity);
+    }
+
+    void Dash(bool dash_button_pressed) { 
+
+        if (dash_button_pressed && !isDashing)
+        {
+            Debug.Log("dash vroom");
+            isDashing = true;
+            dashTimer = 0f;
+        }
+
+    }
+
+    void Dashing()
+    {
+        dashTimer += Time.deltaTime;
+        if (dashTimer > properties.dash_time)
+        {
+            isDashing = false;
+            return;
+        }
+        float dir = currentDirection == Direction.Left ? -1f : 1f;
+        rigid_body.linearVelocityX = dir * properties.dash_velocity;
+        rigid_body.linearVelocityY = 0f;
+        
     }
 
 
@@ -66,14 +97,27 @@ public class PlayerActions : MonoBehaviour
     void OnCollisionStay()
     {
         isGrounded = true;
+
     }
 
-    void FixedUpdate()
+
+    void Update()
     {
+     
         float horizontal_direction = move.ReadValue<Vector2>().x;
-        Move(horizontal_direction);
-        Jump(jump.IsPressed());
-        print(horizontal_direction);
-        
+
+        if (!isDashing)
+        {
+            Move(horizontal_direction);
+            Jump(jump.IsPressed());
+            Dash(dash.WasPressedThisFrame());
+
+        }
+        else
+        {
+            Dashing();
+        }
+        //print(horizontal_direction);
     }
 }
+

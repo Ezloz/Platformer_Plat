@@ -12,7 +12,7 @@ public class Properties : MonoBehaviour
     [field: SerializeField] public float jump_strength {get; private set;} = 20.0f;
     [field: SerializeField] public float jump_length {get; private set;} = 1.0f;
     [field: SerializeField] public float dash_velocity {get; private set;} = 1.0f;
-    [field: SerializeField] public float dash_time {get; private set;} = 10.0f;
+    [field: SerializeField] public float dash_time {get; private set;} = 1.0f;
 
     [field: SerializeField] public float bounce_velocity_conversion_coef {get; private set;} = 0.2f;
 
