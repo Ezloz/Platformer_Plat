@@ -41,7 +41,7 @@ public class PlayerActions : MonoBehaviour
         {
             rigid_body.AddForceX(-this.properties.acceleration);
         }
-
+        rigid_body.linearVelocityX = Mathf.Clamp(rigid_body.linearVelocityX,-properties.max_velocity,properties.max_velocity);
     }
 
     void FixedUpdate()
