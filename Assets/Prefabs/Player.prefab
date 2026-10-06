@@ -175,10 +175,12 @@ MonoBehaviour:
   <acceleration>k__BackingField: 30
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 15
-  <jump_strength>k__BackingField: 25
-  <jump_length>k__BackingField: 5
+  <jump_strength_min>k__BackingField: 20
+  <jump_strength_max>k__BackingField: 2
+  <jump_max_time>k__BackingField: 1
   <dash_velocity>k__BackingField: 50
   <dash_time>k__BackingField: 0.3
+  <attack_time>k__BackingField: 1
   <bounce_velocity_conversion_coef>k__BackingField: 0.2
 --- !u!114 &5572023859431246252
 MonoBehaviour:
@@ -192,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7992a54ad90ba4db9dcb556d4c9429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMouvement
+  attack_sprite: {fileID: 5721086209864773365, guid: 5b878277cf7c0d7439ab520605c23b02, type: 3}
 --- !u!1 &4183969454190361878
 GameObject:
   m_ObjectHideFlags: 0
