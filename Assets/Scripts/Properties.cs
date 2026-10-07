@@ -6,6 +6,8 @@ public class Properties : MonoBehaviour
     public float gravity_scale => this.gameObject.GetComponent<Rigidbody2D>().gravityScale;
 
     [field: SerializeField] public float acceleration {get; private set;} = 1.0f;
+    [field: SerializeField] public float air_acceleration {get; private set;} = 1.0f;
+
     [field: SerializeField] public float max_velocity {get; private set;} = 10.0f;
 
     [field: SerializeField] public float deccelarition { get; private set; } = 1.0f;
