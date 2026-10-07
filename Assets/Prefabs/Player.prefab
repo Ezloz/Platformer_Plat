@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5572023859431246252}
   - component: {fileID: 1241668478364477525}
   - component: {fileID: 4702762266209375795}
+  - component: {fileID: 1218594647640462879}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -308,7 +309,7 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 4
+    textureMode: 3
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -328,6 +329,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fe039a375a1864a992d6b700cc6ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &1218594647640462879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554595367734269726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4060fd69546314798b651f1f00341a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RainbowMaterialScript
+  material: {fileID: 2100000, guid: cd6e09a4d69970c4faf4afe6891bdc5b, type: 2}
+  colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.64341486, b: 0, a: 1}
+  - {r: 1, g: 0.95208335, b: 0, a: 1}
+  - {r: 0.4559884, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.945554, a: 1}
+  - {r: 0, g: 0.1749525, b: 1, a: 1}
+  - {r: 0.5801859, g: 0, b: 1, a: 1}
 --- !u!1 &4183969454190361878
 GameObject:
   m_ObjectHideFlags: 0
