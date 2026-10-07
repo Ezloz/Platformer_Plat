@@ -50,11 +50,27 @@ public class PlayerActions : MonoBehaviour
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
-            rigid_body.AddForceX(properties.acceleration, ForceMode2D.Impulse);                
+            if (GetIsGrounded())
+            {
+                rigid_body.AddForceX(properties.acceleration, ForceMode2D.Impulse);                
+            }
+            else
+            {
+                rigid_body.AddForceX(properties.acceleration, ForceMode2D.Force);
+            }
+            currentDirection = Direction.Right;
+          
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
-            rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Impulse);                
+            if (GetIsGrounded())
+            {
+                rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Impulse);                
+            }
+            else
+            {
+                rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Force);
+            }
             currentDirection = Direction.Left;
         }
         else {
