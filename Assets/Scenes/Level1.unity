@@ -961,6 +961,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6969594387680740136, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+      propertyPath: <jump_damping>k__BackingField
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969594387680740136, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+      propertyPath: <jump_strength>k__BackingField
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969594387680740136, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+      propertyPath: <jump_time_length>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969594387680740136, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+      propertyPath: <jump_counterforce>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7804032325822439881, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9
@@ -1000,6 +1016,10 @@ PrefabInstance:
     - target: {fileID: 7804032325822439881, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182602117860671604, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

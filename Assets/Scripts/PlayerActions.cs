@@ -15,21 +15,21 @@ public class PlayerActions : MonoBehaviour
     private Rigidbody2D rigid_body => GetComponent<Rigidbody2D>();
 
     [SerializeField] private GameObject attack_sprite;
+    private GameObject attack_sprite_instance = null;
     private PlayerFX fx => GetComponent<PlayerFX>();
 
 
     private enum Direction {Left, Right}
     private Direction currentDirection = Direction.Left;
 
-    private bool isGrounded = true;
     private bool isDashing = false;
     private bool isJumping = false;
     private bool isAttacking = false;
 
 
     private float dashTimer = 0f;
-    private float jumpTimer = 0f;
     private float attackTimer = 0f;
+    private float jumpTimer = 0f;
     
 
 
@@ -50,13 +50,11 @@ public class PlayerActions : MonoBehaviour
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
-            rigid_body.AddForceX(properties.acceleration, ForceMode2D.Impulse);
-            currentDirection = Direction.Right;
-          
+            rigid_body.AddForceX(properties.acceleration, ForceMode2D.Impulse);                
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
-            rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Impulse);
+            rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Impulse);                
             currentDirection = Direction.Left;
         }
         else {
@@ -92,7 +90,7 @@ public class PlayerActions : MonoBehaviour
 
     private Vector2 GetAttackDirection()
     {
-        return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        return (Mouse.current.position.ReadValue() - (Vector2) transform.position).normalized;
 
     }
 
@@ -100,7 +98,6 @@ public class PlayerActions : MonoBehaviour
 
         if (attack.WasPressedThisFrame() && !isAttacking)
         {
-            print("test");
             isAttacking = true;
             attackTimer = 0f;
         }
@@ -113,14 +110,18 @@ public class PlayerActions : MonoBehaviour
         if (attackTimer > properties.attack_time)
         {
             isAttacking = false;
-//            this.attack_sprite.GetComponent<SpriteRenderer>().enabled = false;
+            this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
             return;
         }
 
         Vector2 direction = GetAttackDirection();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // merci Chatgpt
+        if (!attack_sprite_instance)
+        {
+            this.attack_sprite_instance = Instantiate(attack_sprite, transform.position, Quaternion.identity);        
+        }
         this.attack_sprite.transform.rotation = Quaternion.Euler(0, 0, angle);
-//        this.attack_sprite.GetComponent<SpriteRenderer>().enabled = true;
+        this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = true;
         
     }
 
@@ -136,18 +137,18 @@ public class PlayerActions : MonoBehaviour
 
         if(jump.WasPressedThisFrame() && GetIsGrounded())
         {
-            rigid_body.AddForceY(this.properties.jump_strength_start, ForceMode2D.Impulse);
-            isGrounded = false;
+            rigid_body.AddForceY(this.properties.jump_strength, ForceMode2D.Impulse);
             isJumping = true;
             jumpTimer = properties.jump_time_length;
         }
-        else if (jump.IsPressed() && isJumping && jumpTimer > 0f)
+        else if(isJumping && jump.IsPressed() && jumpTimer > 0f)
         {
-            rigid_body.AddForceY(properties.jump_strength_max/properties.jump_time_length, ForceMode2D.Force);
-            jumpTimer -= Time.deltaTime;
+            //We keep isJumping to true
+            //see corresponding code in FixedUpdate            
         }
         else
         {
+            jumpTimer = 0f;
             isJumping = false;
         }
     }
@@ -164,16 +165,35 @@ public class PlayerActions : MonoBehaviour
 
     void Update()
     {
-        if (!isDashing)
+//        Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);    
+        if (isDashing)
+        {
+            Dashing();
+        }
+        else if (isAttacking)
+        {
+            Attacking();
+        }
+        else
         {
             Move();
             Jump();
             Dash();
-        }
-        else
-        {
-            Dashing();
+            Attack();            
         }
     }
+
+  void FixedUpdate()
+  {
+    if(isJumping && jump.IsPressed() && jumpTimer > 0f)
+    {
+        jumpTimer -= Time.deltaTime;
+//        Debug.DrawRay(this.transform.position, -Physics2D.gravity * rigid_body.mass, Color.blue);    
+        rigid_body.AddForce(-Physics2D.gravity *rigid_body.gravityScale * rigid_body.mass * Mathf.Max(1-properties.jump_damping,0f));
+    }
+
+    
+  }
+
 }
 
