@@ -21,7 +21,6 @@ public class PlayerActions : MonoBehaviour
     private enum Direction {Left, Right}
     private Direction currentDirection = Direction.Left;
 
-    private bool isGrounded = true;
     private bool isDashing = false;
     private bool isJumping = false;
     private bool isAttacking = false;
@@ -137,7 +136,6 @@ public class PlayerActions : MonoBehaviour
         if(jump.WasPressedThisFrame() && GetIsGrounded())
         {
             rigid_body.AddForceY(this.properties.jump_strength_start, ForceMode2D.Impulse);
-            isGrounded = false;
             isJumping = true;
             jumpTimer = properties.jump_time_length;
         }

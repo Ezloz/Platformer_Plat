@@ -18,14 +18,4 @@ public class Properties : MonoBehaviour
     [field: SerializeField] public float bounce_velocity_conversion_coef {get; private set;} = 0.2f;
 
 
-
-
-    void Start()
-    {
-
-    }
-
-    void FixedUpdate()
-    {
-    }
 }

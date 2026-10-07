@@ -178,8 +178,8 @@ MonoBehaviour:
   <acceleration>k__BackingField: 30
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 15
-  <jump_strength_start>k__BackingField: 10
-  <jump_strength_max>k__BackingField: 20
+  <jump_strength_start>k__BackingField: 20
+  <jump_strength_max>k__BackingField: 10
   <jump_time_length>k__BackingField: 1
   <dash_velocity>k__BackingField: 50
   <dash_time>k__BackingField: 0.3
