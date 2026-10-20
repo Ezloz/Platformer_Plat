@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 6555541223654667958}
   - component: {fileID: 4700865807344312060}
   - component: {fileID: 3626846758745328915}
+  - component: {fileID: 4071425740958413836}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -476,6 +477,18 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.945554, a: 1}
   - {r: 0, g: 0.1749525, b: 1, a: 1}
   - {r: 0.5801859, g: 0, b: 1, a: 1}
+--- !u!114 &4071425740958413836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865555684593936777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795e7a08db74a7a448cf259cb34777f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControllerDetector
 --- !u!1 &7130836126127934833
 GameObject:
   m_ObjectHideFlags: 0

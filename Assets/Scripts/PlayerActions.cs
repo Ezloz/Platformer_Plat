@@ -11,6 +11,8 @@ public class PlayerActions : MonoBehaviour
     private InputAction attack;
     private InputAction jump;
     private InputAction dash;
+    private InputAction reverse_look;
+
 
     private Properties properties => GetComponent<Properties>();
     private Rigidbody2D rigid_body => GetComponent<Rigidbody2D>();
@@ -47,6 +49,7 @@ public class PlayerActions : MonoBehaviour
         attack = InputSystem.actions.FindAction("Attack");
         jump = InputSystem.actions.FindAction("Jump");
         dash = InputSystem.actions.FindAction("Dash");
+        dash = InputSystem.actions.FindAction("ReverseLook");
     }
 
     void Move()
@@ -133,7 +136,10 @@ public class PlayerActions : MonoBehaviour
         }
 
 
-
+        if (reverse_look.IsPressed())
+        {
+            attack_direction = -attack_direction;
+        }
 
         return attack_direction;
     }
@@ -222,7 +228,7 @@ public class PlayerActions : MonoBehaviour
 
     private void Attack_Look()
     {
-        GetAttackDirection();
+        head.transform.localScale = new Vector3(GetAttackDirection().x, GetAttackDirection().y, 1f);
     }
 
     private void OnCollisionEnter(Collision collision)

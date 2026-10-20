@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ControllerDetector : MonoBehaviour
 {
-    private string currentDevice = "";
+    public string currentDevice {get; private set;} = "";
 
     void Update()
     {
@@ -11,12 +11,6 @@ public class ControllerDetector : MonoBehaviour
             Gamepad.current.wasUpdatedThisFrame)
         {
             currentDevice = "Controller";
-        }
-
-        if (Mouse.current != null &&
-            Mouse.current.delta.ReadValue() != Vector2.zero)
-        {
-            currentDevice = "Mouse";
         }
 
         if (Keyboard.current != null &&
