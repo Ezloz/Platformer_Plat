@@ -16,6 +16,8 @@ public class PlayerActions : MonoBehaviour
     private Rigidbody2D rigid_body => GetComponent<Rigidbody2D>();
 
     [SerializeField] private GameObject attack_sprite;
+
+    [SerializeField] private GameObject head;
     private GameObject attack_sprite_instance = null;
     private PlayerFX fx => GetComponent<PlayerFX>();
 
@@ -201,6 +203,12 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    void Look()
+    {
+        float scale = currentDirection == Direction.Left? 1f : -1f;
+        head.transform.localScale = new Vector3(scale, 1f, 1f);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (isDashing)
@@ -213,7 +221,7 @@ public class PlayerActions : MonoBehaviour
 
     void Update()
     {
-//        Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);    
+        //Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);    
         if (isDashing)
         {
             Dashing();
@@ -232,6 +240,7 @@ public class PlayerActions : MonoBehaviour
             Dash();
             Attack();            
         }
+        Look();
     }
 
   void FixedUpdate()
