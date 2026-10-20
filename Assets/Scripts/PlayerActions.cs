@@ -14,6 +14,7 @@ public class PlayerActions : MonoBehaviour
 
     private Properties properties => GetComponent<Properties>();
     private Rigidbody2D rigid_body => GetComponent<Rigidbody2D>();
+    private ControllerDetector user_controller => GetComponent<ControllerDetector>();
 
     [SerializeField] private GameObject attack_sprite;
     private GameObject attack_sprite_instance = null;
@@ -22,6 +23,8 @@ public class PlayerActions : MonoBehaviour
 
     private enum Direction {Left, Right}
     private Direction currentDirection = Direction.Left;
+
+    private Vector2 lookDirection = Vector2.right;
 
 
     private bool isDashing = false;
@@ -109,16 +112,28 @@ public class PlayerActions : MonoBehaviour
 
     private Vector2 GetAttackDirection()
     {
-        if (Camera.main == null)
+        Vector2 attack_direction = Vector2.left;
+        if (user_controller.currentDevice == "Controller")
         {
-            print("No main Camera found");
-            return Vector2.right;
+            attack_direction = move.ReadValue<Vector2>().normalized;
         }
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(
-            new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, -Camera.main.transform.position.z));
+        if (user_controller.currentDevice == "Keyboard")
+        {
+            if (Camera.main == null)
+            {
+                print("No main Camera found");
+                return Vector2.right;
+            }
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(
+                new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, -Camera.main.transform.position.z));
+            
+            attack_direction = ((Vector2)mousePosition - (Vector2)transform.position).normalized;
+        }
 
 
-        return ((Vector2)mousePosition - (Vector2)transform.position).normalized;
+
+
+        return attack_direction;
     }
 
     private void BounceAttack(Vector2 direction)
@@ -137,10 +152,6 @@ public class PlayerActions : MonoBehaviour
         {
             isAttacking = true;
             attackTimer = 0f;
-            if (isDashing)
-            {
-                isDashing = false;
-            }
         }
 
     }
@@ -210,14 +221,18 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    private void Look()
+    {
+        
+    }
 
     void Update()
     {
-//        Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);    
+//        Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);
+        Look();
         if (isDashing)
         {
             Dashing();
-            Attack();
         }
         else if (isAttacking)
         {
