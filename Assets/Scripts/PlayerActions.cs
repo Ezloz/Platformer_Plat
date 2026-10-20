@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerActions : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerActions : MonoBehaviour
 
     private enum Direction {Left, Right}
     private Direction currentDirection = Direction.Left;
+
 
     private bool isDashing = false;
     private bool isJumping = false;
@@ -107,9 +109,27 @@ public class PlayerActions : MonoBehaviour
 
     private Vector2 GetAttackDirection()
     {
-        return (Mouse.current.position.ReadValue() - (Vector2) transform.position).normalized;
+        if (Camera.main == null)
+        {
+            print("No main Camera found");
+            return Vector2.right;
+        }
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(
+            new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, -Camera.main.transform.position.z));
+
+
+        return ((Vector2)mousePosition - (Vector2)transform.position).normalized;
+    }
+
+    private void BounceAttack(Vector2 direction)
+    {
+        direction = direction.normalized; // just in case
+        direction = -direction;
+        float speed = Mathf.Sqrt(rigid_body.linearVelocity.sqrMagnitude);
+        rigid_body.linearVelocity = direction*speed*properties.bounce_velocity_conversion_coef;
 
     }
+
 
     void Attack() { 
 
@@ -117,34 +137,52 @@ public class PlayerActions : MonoBehaviour
         {
             isAttacking = true;
             attackTimer = 0f;
+//            if (isDashing)
+//            {
+//                isDashing = false;
+//            }
         }
 
     }
 
     void Attacking()
     {
+        if (attackTimer == 0f)
+        {
+            Vector2 direction = GetAttackDirection();
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // merci Chatgpt
+            if (!attack_sprite_instance)
+            {
+                this.attack_sprite_instance = Instantiate(attack_sprite, transform.position, Quaternion.identity, this.transform);
+            }
+            this.attack_sprite_instance.transform.rotation = Quaternion.Euler(0, 0, angle);
+            this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = true;
+            this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
         attackTimer += Time.deltaTime;
         if (attackTimer > properties.attack_time)
         {
             isAttacking = false;
             this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
+            this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
             return;
         }
 
-        Vector2 direction = GetAttackDirection();
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // merci Chatgpt
-        if (!attack_sprite_instance)
+        if (this.attack_sprite_instance.GetComponent<BoxCollider2D>().IsTouchingLayers())
         {
-            this.attack_sprite_instance = Instantiate(attack_sprite, transform.position, Quaternion.identity);        
+            BounceAttack(this.attack_sprite_instance.transform.right);
+            isAttacking = false;
+            this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
+            this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
+            return;
         }
-        this.attack_sprite.transform.rotation = Quaternion.Euler(0, 0, angle);
-        this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = true;
-        
+
     }
 
     private bool GetIsGrounded()
     {
-//        Debug.DrawRay(this.transform.position, Vector2.down*this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, Color.red);
+//        Debug.DrawRay(this.transform.position, Vector2.down * (this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f), Color.red);
         return Physics2D.Raycast(transform.position, Vector2.down, GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground"));
 
     }
@@ -186,9 +224,12 @@ public class PlayerActions : MonoBehaviour
         if (isDashing)
         {
             Dashing();
+            Attack();
         }
         else if (isAttacking)
         {
+            Move();
+            Jump();
             Attacking();
         }
         else

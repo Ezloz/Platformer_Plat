@@ -175,17 +175,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09938d54c2046cf458b4eba5fc928390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
-  <acceleration>k__BackingField: 20
+  <acceleration>k__BackingField: 5
   <air_acceleration>k__BackingField: 35
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 10
-  <jump_strength>k__BackingField: 20
-  <jump_damping>k__BackingField: 0
-  <jump_time_length>k__BackingField: 0.3
+  <jump_strength>k__BackingField: 10
+  <jump_damping>k__BackingField: -1
+  <jump_time_length>k__BackingField: 0.2
   <dash_velocity>k__BackingField: 50
   <dash_time>k__BackingField: 0.3
   <attack_time>k__BackingField: 1
-  <bounce_velocity_conversion_coef>k__BackingField: 0.2
+  <bounce_velocity_conversion_coef>k__BackingField: 1.2
 --- !u!114 &7108689832265193793
 MonoBehaviour:
   m_ObjectHideFlags: 0
