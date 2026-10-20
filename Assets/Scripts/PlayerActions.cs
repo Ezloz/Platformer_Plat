@@ -137,10 +137,10 @@ public class PlayerActions : MonoBehaviour
         {
             isAttacking = true;
             attackTimer = 0f;
-//            if (isDashing)
-//            {
-//                isDashing = false;
-//            }
+            if (isDashing)
+            {
+                isDashing = false;
+            }
         }
 
     }
