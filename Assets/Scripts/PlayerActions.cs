@@ -57,11 +57,11 @@ public class PlayerActions : MonoBehaviour
         float direction = move.ReadValue<Vector2>().x;
         //print(horizontal_direction);
 
-        bool isAirborne = GetIsGrounded();
+        bool isGrounded = GetIsGrounded();
 
         if (direction > 0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER 
         {
-            if (isAirborne)
+            if (isGrounded)
             {
                 rigid_body.AddForceX(properties.acceleration, ForceMode2D.Impulse);                
             }
@@ -74,7 +74,7 @@ public class PlayerActions : MonoBehaviour
         }
         else if (direction < -0.5) // TBA : make it relative to the sensitivity option IF CONTROLLER
         {
-            if (isAirborne)
+            if (isGrounded)
             {
                 rigid_body.AddForceX(-properties.acceleration, ForceMode2D.Impulse);                
             }
@@ -223,13 +223,9 @@ public class PlayerActions : MonoBehaviour
     void Look()
     {
         float scale = currentDirection == Direction.Left? 1f : -1f;
-        head.transform.localScale = new Vector3(scale, 1f, 1f);
+//        head.transform.Rotate() = new Vector3(scale, 1f, 1f);
     }
 
-    private void Attack_Look()
-    {
-        head.transform.localScale = new Vector3(GetAttackDirection().x, GetAttackDirection().y, 1f);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -246,7 +242,6 @@ public class PlayerActions : MonoBehaviour
     {
         //Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);    
 
-        Attack_Look();
         if (isDashing)
         {
             Dashing();
