@@ -49,7 +49,7 @@ public class PlayerActions : MonoBehaviour
         attack = InputSystem.actions.FindAction("Attack");
         jump = InputSystem.actions.FindAction("Jump");
         dash = InputSystem.actions.FindAction("Dash");
-        dash = InputSystem.actions.FindAction("ReverseLook");
+        reverse_look = InputSystem.actions.FindAction("ReverseLook");
     }
 
     void Move()
@@ -222,8 +222,9 @@ public class PlayerActions : MonoBehaviour
 
     void Look()
     {
-        float scale = currentDirection == Direction.Left? 1f : -1f;
+//        float scale = currentDirection == Direction.Left? 1f : -1f;
 //        head.transform.Rotate() = new Vector3(scale, 1f, 1f);
+        head.transform.rotation = Quaternion.FromToRotation(Vector2.right, GetAttackDirection());
     }
 
 
