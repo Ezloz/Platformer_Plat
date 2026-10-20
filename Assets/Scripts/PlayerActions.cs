@@ -222,8 +222,9 @@ public class PlayerActions : MonoBehaviour
 
     void Look()
     {
-        float scale = currentDirection == Direction.Left? 1f : -1f;
+//        float scale = currentDirection == Direction.Left? 1f : -1f;
 //        head.transform.Rotate() = new Vector3(scale, 1f, 1f);
+        head.transform.rotation = Quaternion.FromToRotation(Vector2.right, GetAttackDirection());
     }
 
 
