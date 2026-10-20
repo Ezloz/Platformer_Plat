@@ -49,7 +49,7 @@ public class PlayerActions : MonoBehaviour
         attack = InputSystem.actions.FindAction("Attack");
         jump = InputSystem.actions.FindAction("Jump");
         dash = InputSystem.actions.FindAction("Dash");
-        dash = InputSystem.actions.FindAction("ReverseLook");
+        reverse_look = InputSystem.actions.FindAction("ReverseLook");
     }
 
     void Move()
