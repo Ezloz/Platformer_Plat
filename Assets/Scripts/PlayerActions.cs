@@ -169,14 +169,7 @@ public class PlayerActions : MonoBehaviour
             return;
         }
 
-        if (this.attack_sprite_instance.GetComponent<BoxCollider2D>().IsTouchingLayers())
-        {
-            BounceAttack(this.attack_sprite_instance.transform.right);
-            isAttacking = false;
-            this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
-            this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
-            return;
-        }
+
 
     }
 
@@ -250,6 +243,14 @@ public class PlayerActions : MonoBehaviour
         rigid_body.AddForce(-Physics2D.gravity *rigid_body.gravityScale * rigid_body.mass * Mathf.Max(1-properties.jump_damping,0f));
     }
 
+    if (this.attack_sprite_instance.GetComponent<BoxCollider2D>().IsTouchingLayers())
+    {
+        BounceAttack(this.attack_sprite_instance.transform.right);
+        isAttacking = false;
+        this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
+        this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
+        return;
+    }
     
   }
 
