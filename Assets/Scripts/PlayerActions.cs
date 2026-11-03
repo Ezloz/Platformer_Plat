@@ -119,7 +119,7 @@ public class PlayerActions : MonoBehaviour
         
     }
 
-    private Vector2 GetAttackDirection()
+    private Vector2 GetAttackDirection() // MUST HAVE A MAIN CAMERA
     {
         Vector2 attack_direction = Vector2.left;
         if (user_controller.currentDevice == "Controller")
