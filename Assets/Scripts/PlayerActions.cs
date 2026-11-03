@@ -129,7 +129,7 @@ public class PlayerActions : MonoBehaviour
         Vector2 attack_direction = Vector2.left;
         if (user_controller.currentDevice == "Controller")
         {
-            attack_direction = move.ReadValue<Vector2>().normalized;
+            attack_direction = look.ReadValue<Vector2>().normalized;
         }
         if (user_controller.currentDevice == "Keyboard")
         {
@@ -157,7 +157,7 @@ public class PlayerActions : MonoBehaviour
     {
         direction = direction.normalized; // just in case
         direction = -direction;
-        float speed = Mathf.Clamp(Mathf.Sqrt(rigid_body.linearVelocity.sqrMagnitude), properties.bounce_minimum_velocity, properties.bounce_maximum_velocity);
+        float speed = Mathf.Clamp(rigid_body.linearVelocity.y, properties.bounce_minimum_velocity, properties.bounce_maximum_velocity);
         rigid_body.linearVelocity = direction*speed*properties.bounce_velocity_conversion_coef;
 
     }
