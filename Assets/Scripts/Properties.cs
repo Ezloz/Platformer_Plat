@@ -22,6 +22,7 @@ public class Properties : MonoBehaviour
     [field: SerializeField] public float attack_time {get; private set;} = 1.0f;
     [field: SerializeField] public float bounce_velocity_conversion_coef {get; private set;} = 1.1f;
     [field: SerializeField] public float bounce_minimum_velocity {get; private set;} = 4f;
+    [field: SerializeField] public float bounce_maximum_velocity {get; private set;} = 40f;
 
 
 

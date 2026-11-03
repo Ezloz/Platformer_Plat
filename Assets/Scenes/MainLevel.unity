@@ -2627,36 +2627,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5217295296699699140, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
-      propertyPath: <acceleration>k__BackingField
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5217295296699699140, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
-      propertyPath: <jump_damping>k__BackingField
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5217295296699699140, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
-      propertyPath: <jump_strength>k__BackingField
-      value: 20
+      propertyPath: <bounce_maximum_velocity>k__BackingField
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5217295296699699140, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
       propertyPath: <bounce_minimum_velocity>k__BackingField
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 6555541223654667958, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6865555684593936777, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7130836126127934833, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
-      propertyPath: m_TagString
-      value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894732793689288799, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

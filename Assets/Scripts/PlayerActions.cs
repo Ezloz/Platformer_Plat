@@ -47,9 +47,7 @@ public class PlayerActions : MonoBehaviour
 
     private int jumpBufferFrames = 0;
 
-    private int dashCharge = 1;
-    private int attackCharge = 1;
-    
+    private int dashCharge = 1;    
 
 
     void Start()
@@ -159,7 +157,7 @@ public class PlayerActions : MonoBehaviour
     {
         direction = direction.normalized; // just in case
         direction = -direction;
-        float speed = Mathf.Max(Mathf.Sqrt(rigid_body.linearVelocity.sqrMagnitude), properties.bounce_minimum_velocity);
+        float speed = Mathf.Clamp(Mathf.Sqrt(rigid_body.linearVelocity.sqrMagnitude), properties.bounce_minimum_velocity, properties.bounce_maximum_velocity);
         rigid_body.linearVelocity = direction*speed*properties.bounce_velocity_conversion_coef;
 
     }
@@ -167,12 +165,11 @@ public class PlayerActions : MonoBehaviour
 
     void Attack() { 
 
-        if (attack.WasPressedThisFrame() && !isAttacking && attackCharge > 0)
+        if (attack.WasPressedThisFrame() && !isAttacking)
         {
             dashTimer = properties.dash_time+1;
             isDashing = false;
             isAttacking = true;
-            attackCharge -= 1;
             attackTimer = 0f;
         }
 
@@ -293,7 +290,6 @@ public class PlayerActions : MonoBehaviour
         if (GetIsGrounded())
         {
             dashCharge = 1;
-            attackCharge = 1;
             if (wasInAir)
             {
                 landingSFX.Play();
