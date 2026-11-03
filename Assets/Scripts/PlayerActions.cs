@@ -77,7 +77,7 @@ public class PlayerActions : MonoBehaviour
             }
             else
             {
-                rigid_body.AddForceX(properties.air_acceleration, ForceMode2D.Force);
+                rigid_body.AddForceX(properties.air_acceleration, ForceMode2D.Impulse);
             }
             currentDirection = Direction.Right;
           
@@ -90,7 +90,7 @@ public class PlayerActions : MonoBehaviour
             }
             else
             {
-                rigid_body.AddForceX(-properties.air_acceleration, ForceMode2D.Force);
+                rigid_body.AddForceX(-properties.air_acceleration, ForceMode2D.Impulse);
             }
             currentDirection = Direction.Left;
         }
@@ -169,6 +169,8 @@ public class PlayerActions : MonoBehaviour
 
         if (attack.WasPressedThisFrame() && !isAttacking && attackCharge > 0)
         {
+            dashTimer = properties.dash_time+1;
+            isDashing = false;
             isAttacking = true;
             attackCharge -= 1;
             attackTimer = 0f;
@@ -273,16 +275,15 @@ public class PlayerActions : MonoBehaviour
         if (isDashing)
         {
             Dashing();
+            Attack(); 
         }
         else if (isAttacking)
         {
-            Move();
             Jump();
             Attacking();
         }
         else
         {
-            Move();
             Jump();
             Dash();
             Attack();            
@@ -304,6 +305,19 @@ public class PlayerActions : MonoBehaviour
   void FixedUpdate()
   {
 
+        if (isDashing)
+        {
+        }
+        else if (isAttacking)
+        {
+            Move();
+        }
+        else
+        {
+            Move();
+        }
+
+
     if(isJumping && jump.IsPressed() && jumpTimer > 0f)
     {
         jumpTimer -= Time.deltaTime;
@@ -318,7 +332,7 @@ public class PlayerActions : MonoBehaviour
         isAttacking = false;
         this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
         this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
-//        dashCharge = 1;
+        dashCharge = 1;
         return;
     }
 
