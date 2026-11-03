@@ -284,9 +284,8 @@ public class PlayerActions : MonoBehaviour
 
     if (this.attack_sprite_instance != null && this.attack_sprite_instance.GetComponent<BoxCollider2D>().IsTouchingLayers())
     {
-
-        BounceAttack(this.attack_sprite_instance.transform.right);
         attack_sprite_instance.GetComponent<AudioSource>().Play();
+        BounceAttack(this.attack_sprite_instance.transform.right);
         isAttacking = false;
         this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
         this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
