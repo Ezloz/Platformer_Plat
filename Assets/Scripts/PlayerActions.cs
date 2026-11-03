@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerActions : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource landingSFX;
+    [SerializeField] private AudioSource jumpSFX;
     private InputAction move;
     private InputAction look;
     private InputAction attack;
@@ -29,6 +32,8 @@ public class PlayerActions : MonoBehaviour
     private Direction currentDirection = Direction.Left;
 
     private Vector2 lookDirection = Vector2.right;
+
+    private bool wasInAir = false;
 
 
     private bool isDashing = false;
@@ -212,6 +217,7 @@ public class PlayerActions : MonoBehaviour
             rigid_body.AddForceY(this.properties.jump_strength, ForceMode2D.Impulse);
             isJumping = true;
             jumpTimer = properties.jump_time_length;
+            jumpSFX.Play();
         }
         else if(isJumping && jump.IsPressed() && jumpTimer > 0f)
         {
@@ -240,6 +246,7 @@ public class PlayerActions : MonoBehaviour
             isDashing = false;
             fx.StopEmiting();
         }
+      
     }
 
 
@@ -270,7 +277,13 @@ public class PlayerActions : MonoBehaviour
         {
             dashCharge = 1;
             attackCharge = 1;
+            if (wasInAir)
+            {
+                landingSFX.Play();
+            }
+            wasInAir = false;
         }
+        else { wasInAir = true; }
     }
 
   void FixedUpdate()
