@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
   <acceleration>k__BackingField: 1.5
-  <air_acceleration>k__BackingField: 15
+  <air_acceleration>k__BackingField: 0.8
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 10
   <jump_strength>k__BackingField: 20
