@@ -783,6 +783,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &774382994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774382996}
+  - component: {fileID: 774382995}
+  - component: {fileID: 774382997}
+  m_Layer: 5
+  m_Name: UIDocument
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &774382995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774382994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 735f4d01a8cf5c94986417e96acc8e10, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 46bea4632c6d90b4d96b74df12d3286c, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &774382996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774382994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &774382997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774382994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a21bdfa75457348913df07fbd2127f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
 --- !u!1 &916963873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,7 +1247,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5217295296699699140, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 7108689832265193793, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 6555541223654667958, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 4700865807344312060, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 4071425740958413836, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 3264784914356019083, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 7030652817711169058, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 2103745286832518411, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
+    - {fileID: 5730752577630450812, guid: 2d25a767f41d4cc498c35469b4d181dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1195,3 +1272,4 @@ SceneRoots:
   - {fileID: 1880346242}
   - {fileID: 916963877}
   - {fileID: 223820964}
+  - {fileID: 774382996}
