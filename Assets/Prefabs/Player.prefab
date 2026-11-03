@@ -211,7 +211,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -299,13 +299,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09938d54c2046cf458b4eba5fc928390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProperties
-  <acceleration>k__BackingField: 5
-  <air_acceleration>k__BackingField: 30
+  <acceleration>k__BackingField: 0.8
+  <air_acceleration>k__BackingField: 10
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 10
-  <jump_strength>k__BackingField: 10
-  <jump_damping>k__BackingField: -1
+  <jump_strength>k__BackingField: 20
+  <jump_damping>k__BackingField: 0.5
   <jump_time_length>k__BackingField: 0.2
+  <jump_buffer_nb_frames>k__BackingField: 10
   <dash_velocity>k__BackingField: 50
   <dash_time>k__BackingField: 0.3
   <attack_time>k__BackingField: 0.5
@@ -371,7 +372,7 @@ TrailRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Time: 0.5
   m_PreviewTimeScale: 1
@@ -481,7 +482,7 @@ GameObject:
   - component: {fileID: 3788671364765857155}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

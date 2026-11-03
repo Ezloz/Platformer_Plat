@@ -305,7 +305,7 @@ public class PlayerActions : MonoBehaviour
         isAttacking = false;
         this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
         this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
-        dashCharge = 1;
+//        dashCharge = 1;
         return;
     }
 
