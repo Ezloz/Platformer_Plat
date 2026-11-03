@@ -40,6 +40,8 @@ public class PlayerActions : MonoBehaviour
     private float attackTimer = 0f;
     private float jumpTimer = 0f;
 
+    private int jumpBufferFrames = 0;
+
     private int dashCharge = 1;
     private int attackCharge = 1;
     
@@ -206,9 +208,10 @@ public class PlayerActions : MonoBehaviour
 
     void Jump()
     {
-
-        if(jump.WasPressedThisFrame() && GetIsGrounded())
+        if((jump.WasPressedThisFrame() || jumpBufferFrames > 0) && GetIsGrounded())
         {
+            jumpBufferFrames = 0;
+            rigid_body.linearVelocityY = 0;
             rigid_body.AddForceY(this.properties.jump_strength, ForceMode2D.Impulse);
             isJumping = true;
             jumpTimer = properties.jump_time_length;
@@ -248,6 +251,18 @@ public class PlayerActions : MonoBehaviour
     {
         //Debug.DrawRay(this.transform.position, rigid_body.linearVelocity, Color.red);    
 
+        if (jumpBufferFrames > 0)
+        {
+            jumpBufferFrames -= 1;
+            print(jumpBufferFrames);
+        }
+        if (jump.WasPerformedThisFrame())
+        {
+            jumpBufferFrames = properties.jump_buffer_nb_frames;
+            print("Hello" + jumpBufferFrames);
+        }
+
+
         if (isDashing)
         {
             Dashing();
@@ -275,6 +290,7 @@ public class PlayerActions : MonoBehaviour
 
   void FixedUpdate()
   {
+
     if(isJumping && jump.IsPressed() && jumpTimer > 0f)
     {
         jumpTimer -= Time.deltaTime;
@@ -288,9 +304,11 @@ public class PlayerActions : MonoBehaviour
         isAttacking = false;
         this.attack_sprite_instance.GetComponent<SpriteRenderer>().enabled = false;
         this.attack_sprite_instance.GetComponent<BoxCollider2D>().enabled = false;
+        dashCharge = 1;
         return;
     }
-    
+
+
   }
 
 }
