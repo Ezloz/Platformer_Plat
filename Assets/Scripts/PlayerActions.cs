@@ -39,6 +39,9 @@ public class PlayerActions : MonoBehaviour
     private float dashTimer = 0f;
     private float attackTimer = 0f;
     private float jumpTimer = 0f;
+
+    private int dashCharge = 1;
+    private int attackCharge = 1;
     
 
 
@@ -92,9 +95,10 @@ public class PlayerActions : MonoBehaviour
 
     void Dash() { 
 
-        if (dash.WasPressedThisFrame() && !isDashing)
+        if (dash.WasPressedThisFrame() && !isDashing && dashCharge > 0)
         {
             isDashing = true;
+            dashCharge -= 1;
             dashTimer = 0f;
             fx.EmitTrail(0.5f, properties.dash_time);
         }
@@ -156,9 +160,10 @@ public class PlayerActions : MonoBehaviour
 
     void Attack() { 
 
-        if (attack.WasPressedThisFrame() && !isAttacking)
+        if (attack.WasPressedThisFrame() && !isAttacking && attackCharge > 0)
         {
             isAttacking = true;
+            attackCharge -= 1;
             attackTimer = 0f;
         }
 
@@ -261,6 +266,11 @@ public class PlayerActions : MonoBehaviour
             Attack();            
         }
         Look();
+        if (GetIsGrounded())
+        {
+            dashCharge = 1;
+            attackCharge = 1;
+        }
     }
 
   void FixedUpdate()
