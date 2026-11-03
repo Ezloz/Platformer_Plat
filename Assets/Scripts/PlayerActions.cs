@@ -159,7 +159,7 @@ public class PlayerActions : MonoBehaviour
     {
         direction = direction.normalized; // just in case
         direction = -direction;
-        float speed = Mathf.Sqrt(rigid_body.linearVelocity.sqrMagnitude);
+        float speed = Mathf.Max(Mathf.Sqrt(rigid_body.linearVelocity.sqrMagnitude), properties.bounce_minimum_velocity);
         rigid_body.linearVelocity = direction*speed*properties.bounce_velocity_conversion_coef;
 
     }
@@ -208,8 +208,9 @@ public class PlayerActions : MonoBehaviour
 
     private bool GetIsGrounded()
     {
-//        Debug.DrawRay(this.transform.position, Vector2.down * (this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f), Color.red);
-        return Physics2D.Raycast(transform.position, Vector2.down, GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground"));
+//        Debug.DrawRay(transform.position + Vector3.right*GetComponent<SpriteRenderer>().bounds.extents.x, Vector2.down * (this.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y+0.01f), Color.red);
+        return Physics2D.Raycast(transform.position + Vector3.right*(GetComponent<SpriteRenderer>().bounds.extents.x-0.01f), Vector2.down, GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground"))
+            || Physics2D.Raycast(transform.position + Vector3.left*(GetComponent<SpriteRenderer>().bounds.extents.x-0.01f), Vector2.down, GetComponent<SpriteRenderer>().bounds.extents.y+0.01f, LayerMask.GetMask("Platform", "Ground")); 
 
     }
 
