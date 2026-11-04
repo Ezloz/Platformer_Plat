@@ -1,10 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Container" style="flex-grow: 1;">
-        <ui:Label text="Platform Plat" name="Main_Menu_Text" style="white-space: pre; -unity-text-align: upper-center; font-size: 24px;"/>
-        <ui:VisualElement name="Container" style="flex-grow: 1; align-items: center;">
-            <ui:Button text="Play" name="Play" style="-unity-font-style: bold; -unity-text-align: middle-center; width: 146px;"/>
-            <ui:Button text="Controls" name="Controls" style="-unity-font-style: bold; width: 143px;"/>
-            <ui:Button text="Quit" name="Quit" style="-unity-font-style: bold; width: 143px;"/>
+    <Style src="project://database/Assets/UI%20Toolkit/UISS.uss?fileID=7433441132597879392&amp;guid=e4d4760eec763304aa9ee5b536c78463&amp;type=3#UISS"/>
+    <ui:VisualElement name="MainMenu" class="main-menu">
+        <ui:Label text="Platform Plat" name="Main_Menu_Text" class="title"/>
+        <ui:VisualElement name="MenuButtons" class="menu-buttons">
+            <ui:Button text="Play" name="Play" class="menu-button"/>
+            <ui:Button text="Controls" name="Controls" class="menu-button"/>
+            <ui:Button text="Quit" name="Quit" class="menu-button"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

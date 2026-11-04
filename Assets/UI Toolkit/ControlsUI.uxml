@@ -1,0 +1,51 @@
+
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="False">
+
+    <Style src="project://database/Assets/UI%20Toolkit/ControlsUISS.uss?fileID=7433441132597879392&amp;guid=fbe300e800b33534589296db10d12e07&amp;type=3#ControlsUISS"/>
+
+    <ui:VisualElement name="ControlsScreen" class="controls-screen">
+
+        <ui:Label text="CONTROLS" class="title"/>
+
+        <ui:VisualElement class="controls-panel">
+
+            <ui:VisualElement class="header-row">
+                <ui:Label text="ACTION" class="header action-column"/>
+                <ui:Label text="KEYBOARD" class="header"/>
+                <ui:Label text="GAMEPAD" class="header"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="control-row">
+                <ui:Label text="Move" class="action"/>
+                <ui:Label text="W A S D" class="key"/>
+                <ui:Label text="Left Stick" class="key"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="control-row">
+                <ui:Label text="Look" class="action"/>
+                <ui:Label text="Mouse" class="key"/>
+                <ui:Label text="Right Stick" class="key"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="control-row">
+                <ui:Label text="Attack" class="action"/>
+                <ui:Label text="Left Click" class="key"/>
+                <ui:Label text="RT" class="key"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="control-row">
+                <ui:Label text="Jump" class="action"/>
+                <ui:Label text="SPACE" class="key"/>
+                <ui:Label text="Down Button" class="key"/>
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <ui:Button text="BACK" name="Back" class="back-button"/>
+
+    </ui:VisualElement>
+</ui:UXML>

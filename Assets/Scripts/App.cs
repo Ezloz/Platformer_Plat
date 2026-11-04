@@ -35,7 +35,9 @@ public class App : MonoBehaviour
     void Update()
     {
         if (this.exitAction.activeValueType != null){
+            if ()
             QuitGame();
+            ExitControls();
         }
     }
 
@@ -81,8 +83,8 @@ public class App : MonoBehaviour
         Debug.Log("Désaffiche Loading Screen");
 
         // Give controls back to the player
-        this.exitAction.Enable();
         InputSystem.actions.FindActionMap("Player").Enable();
+        this.exitAction.Enable();
 //        InputSystem.actions.FindActionMap("Player").Enable();
     }
 
@@ -95,6 +97,25 @@ public class App : MonoBehaviour
         this.StartCoroutine(UnloadAndLoad(toUnload, toLoad));
 
     }
+
+    public void Controls()
+    {
+        string[] toUnload = {"Menu"};
+        string[] toLoad = {"ControlMenu"};
+        this.StartCoroutine(UnloadAndLoad(toUnload, toLoad));
+    }
+
+    public void ExitControls()
+    {
+        if (SceneManager.GetSceneByName("ControlMenu").name == "ControlMenu")
+        {
+        string[] toUnload = {"ControlMenu"};
+        string[] toLoad = {"Menu"};
+        this.StartCoroutine(UnloadAndLoad(toUnload, toLoad));
+        }
+    }
+
+
     public void QuitGame()
     {
         if (SceneManager.GetSceneByName("MainLevel").name == "MainLevel")
