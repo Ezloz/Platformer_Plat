@@ -35,7 +35,6 @@ public class App : MonoBehaviour
     void Update()
     {
         if (this.exitAction.activeValueType != null){
-            if ()
             QuitGame();
             ExitControls();
         }
