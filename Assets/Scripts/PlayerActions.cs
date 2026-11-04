@@ -261,12 +261,10 @@ public class PlayerActions : MonoBehaviour
         if (jumpBufferFrames > 0)
         {
             jumpBufferFrames -= 1;
-            print(jumpBufferFrames);
         }
         if (jump.WasPerformedThisFrame())
         {
             jumpBufferFrames = properties.jump_buffer_nb_frames;
-            print("Hello" + jumpBufferFrames);
         }
 
 
