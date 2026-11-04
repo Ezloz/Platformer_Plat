@@ -130,6 +130,10 @@ public class PlayerActions : MonoBehaviour
         if (user_controller.currentDevice == "Controller")
         {
             attack_direction = look.ReadValue<Vector2>().normalized;
+            if (attack_direction == Vector2.zero)
+            {
+                attack_direction = currentDirection == Direction.Left ? Vector2.left : Vector2.right;
+            }
         }
         if (user_controller.currentDevice == "Keyboard")
         {
@@ -236,9 +240,19 @@ public class PlayerActions : MonoBehaviour
 
     void Look()
     {
-//        float scale = currentDirection == Direction.Left? 1f : -1f;
-//        head.transform.Rotate() = new Vector3(scale, 1f, 1f);
+
         head.transform.rotation = Quaternion.FromToRotation(Vector2.right, GetAttackDirection());
+        //if (user_controller.currentDevice == "Controller")
+        //{
+        //    if (look.ReadValue<Vector2>()==Vector2.zero)
+        //    {
+        //        float scale = currentDirection == Direction.Left ? -1f : 1f;
+        //        head.transform.rotation = Quaternion.FromToRotation(Vector2.right ,new Vector2(scale,0));
+        //    }
+        //}
+            //        float scale = currentDirection == Direction.Left? 1f : -1f;
+            //        head.transform.Rotate() = new Vector3(scale, 1f, 1f);
+            //head.transform.rotation = Quaternion.FromToRotation(Vector2.right, GetAttackDirection());
     }
 
 
