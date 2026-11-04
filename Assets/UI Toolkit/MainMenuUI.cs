@@ -40,7 +40,11 @@ public class MainMenu : MonoBehaviour
 
     private void Quit(ClickEvent evnt)
     {
+    #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
     }
 
 
