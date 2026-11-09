@@ -219,6 +219,11 @@ public class PlayerActions : MonoBehaviour
             isJumping = true;
             jumpTimer = properties.jump_time_length;
             jumpSFX.Play();
+            if (landingSFX.isPlaying)
+            {
+                landingSFX.Stop();
+            }
+            
         }
         else if(isJumping && jump.IsPressed() && jumpTimer > 0f)
         {
@@ -296,7 +301,7 @@ public class PlayerActions : MonoBehaviour
         if (GetIsGrounded())
         {
             dashCharge = 1;
-            if (wasInAir)
+            if (wasInAir && jumpBufferFrames==0)
             {
                 landingSFX.Play();
             }
