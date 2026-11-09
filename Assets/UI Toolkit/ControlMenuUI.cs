@@ -12,10 +12,17 @@ public class ControlMenu : MonoBehaviour
     {
         var uiDocument = GetComponent<UIDocument>();
         buttonBack = uiDocument.rootVisualElement.Q("Back") as Button;        
-        buttonBack.RegisterCallback<ClickEvent>(Back);
+        buttonBack.clicked += Back;
 
     }
-    private void Back(ClickEvent evnt)
+
+    private void Start()
+    {
+        // Start with a focused button so joystick/D-pad navigation has a starting point
+        buttonBack.Focus();
+    }
+
+    private void Back()
     {
         App.Instance.ExitControls();
         

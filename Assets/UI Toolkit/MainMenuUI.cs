@@ -18,27 +18,33 @@ public class MainMenu : MonoBehaviour
         buttonPlay = uiDocument.rootVisualElement.Q("Play") as Button;        
         buttonControls = uiDocument.rootVisualElement.Q("Controls") as Button;        
         buttonQuit = uiDocument.rootVisualElement.Q("Quit") as Button;
-        buttonPlay.RegisterCallback<ClickEvent>(Play);
-        buttonControls.RegisterCallback<ClickEvent>(Controls);
-        buttonQuit.RegisterCallback<ClickEvent>(Quit);
+        buttonPlay.clicked += Play;
+        buttonControls.clicked += Controls;
+        buttonQuit.clicked += Quit;
 
+    }
+
+    private void Start()
+    {
+        // Start with a focused button so joystick/D-pad navigation has a starting point
+        buttonPlay.Focus();
     }
 
     private void OnDisable()
     {
 //        this.container.AddToClassList("hide");        
     }
-    private void Play(ClickEvent evnt)
+    private void Play()
     {
         App.Instance.StartGame();
         
     }
-    private void Controls(ClickEvent evnt)
+    private void Controls()
     {
         App.Instance.Controls();
     }
 
-    private void Quit(ClickEvent evnt)
+    private void Quit()
     {
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

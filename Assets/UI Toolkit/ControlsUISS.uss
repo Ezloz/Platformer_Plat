@@ -91,3 +91,9 @@
 .back-button:hover {
     background-color: rgb(75, 80, 87);
 }
+
+.back-button:focus {
+    background-color: rgb(90, 96, 104);
+    border-color: rgb(235, 230, 215);
+    border-width: 1px;
+}

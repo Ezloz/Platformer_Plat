@@ -33,3 +33,10 @@
     background-color: rgb(75, 80, 87);
     color: white;
 }
+
+.menu-button:focus {
+    background-color: rgb(90, 96, 104);
+    color: white;
+    border-color: rgb(235, 230, 215);
+    border-width: 1px;
+}
