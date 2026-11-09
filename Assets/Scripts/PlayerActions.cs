@@ -219,10 +219,7 @@ public class PlayerActions : MonoBehaviour
             isJumping = true;
             jumpTimer = properties.jump_time_length;
             jumpSFX.Play();
-            if (landingSFX.isPlaying)
-            {
-                landingSFX.Stop();
-            }
+            
             
         }
         else if(isJumping && jump.IsPressed() && jumpTimer > 0f)
