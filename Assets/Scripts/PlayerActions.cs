@@ -14,7 +14,6 @@ public class PlayerActions : MonoBehaviour
     private InputAction attack;
     private InputAction jump;
     private InputAction dash;
-    private InputAction reverse_look;
 
 
     private Properties properties => GetComponent<Properties>();
@@ -57,7 +56,6 @@ public class PlayerActions : MonoBehaviour
         attack = InputSystem.actions.FindAction("Attack");
         jump = InputSystem.actions.FindAction("Jump");
         dash = InputSystem.actions.FindAction("Dash");
-        reverse_look = InputSystem.actions.FindAction("ReverseLook");
     }
 
     void Move()
@@ -149,10 +147,6 @@ public class PlayerActions : MonoBehaviour
         }
 
 
-        if (reverse_look.IsPressed())
-        {
-            attack_direction = -attack_direction;
-        }
 
         return attack_direction;
     }
