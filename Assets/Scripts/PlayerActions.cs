@@ -325,7 +325,7 @@ public class PlayerActions : MonoBehaviour
     {
         jumpTimer -= Time.deltaTime;
 //        Debug.DrawRay(this.transform.position, -Physics2D.gravity * rigid_body.mass, Color.blue);    
-        rigid_body.AddForce(-Physics2D.gravity *rigid_body.gravityScale * rigid_body.mass * Mathf.Max(1-properties.jump_damping,0f));
+        rigid_body.AddForce(-Physics2D.gravity *rigid_body.gravityScale * rigid_body.mass * Mathf.Max(1-properties.jump_antigravity_coef,0f));
     }
 
     if (this.attack_sprite_instance != null && this.attack_sprite_instance.GetComponent<BoxCollider2D>().IsTouchingLayers())
