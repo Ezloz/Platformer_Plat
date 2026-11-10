@@ -306,7 +306,7 @@ MonoBehaviour:
   <max_velocity>k__BackingField: 30
   <deccelarition>k__BackingField: 10
   <jump_strength>k__BackingField: 20
-  <jump_damping>k__BackingField: 0.5
+  <jump_antigravity_coef>k__BackingField: 0.5
   <jump_time_length>k__BackingField: 0.2
   <jump_buffer_nb_frames>k__BackingField: 10
   <dash_velocity>k__BackingField: 50
